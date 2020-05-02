@@ -1,5 +1,7 @@
 import 'package:FoodApp/screens/categories_screen.dart';
 import 'package:FoodApp/screens/category_meals_screen.dart';
+import 'package:FoodApp/screens/meal_detail_screen.dart';
+import 'package:FoodApp/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,12 +27,19 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
               ))),
       // home: CategoriesScreen(),
-      initialRoute: '/',
-
+      initialRoute: 'mainScreen',
       routes: {
-        '/': (context) => CategoriesScreen(),
+        'mainScreen': (context) => TabsScreen(),
         CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
+        MealDetailScreen.routeName : (context) => MealDetailScreen(),
       },
+      onGenerateRoute: (settings){
+        print(settings.arguments);
+        return MaterialPageRoute(builder: (context) => CategoriesScreen(),);
+      },
+      onUnknownRoute: (settings){
+        return MaterialPageRoute(builder: (context) => CategoriesScreen());
+      } ,
     );
   }
 }
